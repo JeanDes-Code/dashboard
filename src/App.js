@@ -26,10 +26,16 @@ import Line from './pages/Charts/Line'
 import { useStateContext } from './contexts/ContextProvider'
 
 const App = () => {
-    const { activeMenu } = useStateContext()
+    const {
+        currentMode,
+        currentColor,
+        activeMenu,
+        themeSettings,
+        setThemeSettings,
+    } = useStateContext()
 
     return (
-        <div>
+        <div className={currentMode === 'Dark' ? 'dark' : ''}>
             <BrowserRouter>
                 <div className="flex relative dark:bg-main-dark-bg">
                     <div
@@ -41,9 +47,10 @@ const App = () => {
                                 type="button"
                                 className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
                                 style={{
-                                    background: 'blue',
+                                    background: currentColor,
                                     borderRadius: '50%',
                                 }}
+                                onClick={() => setThemeSettings(true)}
                             >
                                 <FiSettings />
                             </button>
@@ -59,7 +66,7 @@ const App = () => {
                         </div>
                     )}
                     <div
-                        className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
+                        className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${
                             activeMenu ? ' md:ml-72' : 'flex-2'
                         }`}
                     >
@@ -68,6 +75,7 @@ const App = () => {
                         </div>
 
                         <div>
+                            {themeSettings && <ThemeSettings />}
                             <Routes>
                                 {/* Dashboard */}
                                 <Route path="/" element={<Ecommerce />} />

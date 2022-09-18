@@ -7,7 +7,7 @@ import { earningData, SparklineAreaData, ecomPieChartData } from '../data/dummy'
 import { useStateContext } from '../contexts/ContextProvider'
 
 const Ecommerce = () => {
-    const {} = useStateContext()
+    const { currentColor } = useStateContext()
 
     return (
         <div className="mt-24">
@@ -20,7 +20,7 @@ const Ecommerce = () => {
                         </div>
                         <button
                             type="button"
-                            style={{ backgroundColor: 'blue' }}
+                            style={{ backgroundColor: currentColor }}
                             className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
                         >
                             <BsCurrencyEuro />
@@ -30,7 +30,7 @@ const Ecommerce = () => {
                     <div className="mt-6">
                         <Button
                             color="white"
-                            bgColor="blue"
+                            bgColor={currentColor}
                             text="Download"
                             borderRadius="10px"
                         />
@@ -115,19 +115,19 @@ const Ecommerce = () => {
 
                             <div className="mt-5">
                                 <SparkLine
-                                    currentColor="blue"
+                                    currentColor={currentColor}
                                     id="line-sparkline"
                                     type="Line"
                                     height="80px"
                                     width="250px"
                                     data={SparklineAreaData}
-                                    color="blue"
+                                    color={currentColor}
                                 />
                             </div>
                             <div className="mt-10">
                                 <Button
                                     color="white"
-                                    bgColor="blue"
+                                    bgColor={currentColor}
                                     text="Download Report"
                                     borderRadius="10px"
                                 />
